@@ -33,7 +33,7 @@ def wrapGifts(gifts, paper):
 
     # Check if the sum for each combination equals length of paper
     # combos is in order from by smallest to largest combo lengths, 
-    # so the loop automatically results the max number of gifts
+    # so the loop automatically results in the max number of gifts
     for combo in combos:
         if sum(combo) == paper:
             number = len(combo)

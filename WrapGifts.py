@@ -21,10 +21,6 @@ wrapGifts([2, 2, 2, 2, 4, 4], 8)
 4 // 2 and 2 and 2 and 2
 
 '''
-in_list = [1, 2, 3]
-out_list = []
-for i in range(1, len(in_list)+1):
-    out_list.extend(itertools.combinations(in_list, i))
 
 import itertools
 def wrapGifts(gifts, paper):

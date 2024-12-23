@@ -21,7 +21,6 @@ class WhiteElephantGame:
         self.participants = participants 
         self.i = 0 # Iterator variable for person
         self.gifts = {} # Dictonary for tracking each person and their gift
-        self.stolen_already = []
         self.steals = 0
         self.gift_stolen = -1
         self.prev_move = -1
@@ -58,8 +57,8 @@ class WhiteElephantGame:
         move = 0
         if self.prev_move == 2 and len(has_gifts) < 3:
             move = 1
+        # Otherwise, select random move 
         else:
-            # Otherwise, select random move 
             move = random.choice(actions)
 
         # Continue while move outcome has not been determined and current index is less than number of participants 
@@ -93,9 +92,7 @@ class WhiteElephantGame:
                 # Increment i for next person
                 self.i += 1
 
-                # Empty stolen_already list and make steals = 0 as new gift restarts number of people who stole already 
-                # and number of steals
-                self.stolen_already = []
+                # Make steals = 0 as new gift restarts number of people who stole already and reset gift_stolen
                 self.steals = 0
                 self.gift_stolen = -1
 
@@ -107,28 +104,12 @@ class WhiteElephantGame:
             elif move == 2 and self.steals < 3: 
 
                 # If no gifts have been stolen yet, current person can steal from anyone except themself of course
-                if not self.stolen_already:
-                    stolen_from = random.choice(list(val for val in has_gifts if val != current ))
+                except_current = list(val for val in has_gifts if val != current)
+                stolen_from = random.choice(except_current)
 
-                # Otherwise, the gift stolen cannot be stolen from themself nor from the people who have stolen gifts already
-                # nor gift stolen last move (prevent stealback from person who originally took someone's gift in current turn)
-                else: 
-                    # Gift stolen cannot be stolen from themself 
-                    except_current = list(val for val in has_gifts if val != current)
-                    stolen_from = random.choice(except_current) 
-
-                    # Gift cannot be stolen from someone who has already stolen nor be a gift that was stolen prior
-                    if stolen_from in self.stolen_already and self.gifts[stolen_from] != self.gift_stolen and len(except_current) > 1 and len(except_current) < len(self.gifts): 
-                        stolen_from = random.choice(list(num for num in has_gifts if num != stolen_from and  num != current))
-
-                        if self.gifts[stolen_from] == self.gift_stolen:
-                            stolen_from = random.choice(list(num for num in has_gifts if num != stolen_from and  num != current))
-
-                    else:
-
-                        if self.gifts[stolen_from] == self.gift_stolen:
-                            stolen_from = random.choice(list(num for num in has_gifts if num != stolen_from and  num != current))
-
+                # Gift cannot be a gift that was stolen in prior move
+                if self.gifts[stolen_from] == self.gift_stolen and len(except_current) > 1: 
+                    stolen_from = random.choice(list(val for val in except_current if val != stolen_from))
 
                 #Outcome of current move: gift stolen
                 self.outcome = current + ' stole gift ' + str(self.gifts[stolen_from]) + ' from ' + stolen_from
@@ -141,9 +122,6 @@ class WhiteElephantGame:
 
                 # Person who had their gift stolen no longer has a gift 
                 self.gifts[stolen_from] = None
-
-                # Allow current person to no longer steal by adding to stolen already
-                self.stolen_already.append(current)
                
                 # Set the next person to be who had their gift stolen 
                 self.i = int(stolen_from.split(' ')[1])

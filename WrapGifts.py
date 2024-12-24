@@ -23,7 +23,7 @@ wrapGifts([2, 2, 2, 2, 4, 4], 8)
 '''
 
 import itertools
-def wrapGifts(gifts, paper):
+def wrap_gifts(gifts, paper):
     combos = []
     number = 0
     
@@ -41,9 +41,9 @@ def wrapGifts(gifts, paper):
     return number
 
 
-print(wrapGifts([2, 3, 4, 5], 7))
-print(wrapGifts([1, 1, 1, 1, 1, 1, 1], 3))
-print(wrapGifts([1, 2, 3, 4, 5], 6))
+print(wrap_gifts([2, 3, 4, 5], 7))
+print(wrap_gifts([1, 1, 1, 1, 1, 1, 1], 3))
+print(wrap_gifts([1, 2, 3, 4, 5], 6))
 #
-print(wrapGifts([2, 3, 6, 7, 7, 8, 9], 14))
-print(wrapGifts([2, 2, 2, 2, 4, 4], 8))
+print(wrap_gifts([2, 3, 6, 7, 7, 8, 9], 14))
+print(wrap_gifts([2, 2, 2, 2, 4, 4], 8))

@@ -26,7 +26,7 @@ class WhiteElephantGame:
         self.prev_move = -1
 
 
-    def nextMove(self):
+    def next_move(self):
         # Initialize move to None
         self.outcome = None
         
@@ -79,8 +79,8 @@ class WhiteElephantGame:
                 # If the number of the gift matches current person and that gift is already claimed, they claim the gift 
                 # one number higher than the max number gift already claimed
                 if self.i in self.gifts.values() and self.gifts[current] is None:
-                    maxGift = max(m for m in self.gifts.values() if m is not None) + 1
-                    self.gifts[current] = maxGift
+                    max_gift = max(m for m in self.gifts.values() if m is not None) + 1
+                    self.gifts[current] = max_gift
 
                 # Otherwise they get the gift that matches their number
                 else: 
@@ -138,18 +138,17 @@ class WhiteElephantGame:
 
 
 game = WhiteElephantGame(4)
-print(game.nextMove())
-print(game.nextMove())
-print(game.nextMove())
-print(game.nextMove())
-print(game.nextMove())
-print(game.nextMove())
-print(game.nextMove())
-print(game.nextMove())
-print(game.nextMove())
-print(game.nextMove())
-print(game.nextMove())
-print(game.nextMove())
-print(game.nextMove())
-print(game.nextMove())
+print(game.next_move())
+print(game.next_move())
+print(game.next_move())
+print(game.next_move())
+print(game.next_move())
+print(game.next_move())
+print(game.next_move())
+print(game.next_move())
+print(game.next_move())
+print(game.next_move())
+print(game.next_move())
+print(game.next_move())
+print(game.next_move())
 

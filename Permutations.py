@@ -65,6 +65,9 @@ print(permute2('talk'))
 print(permute('aac'))
 print(permute2('aac'))
 
+print(permute('tall'))
+print(permute2('tall'))
+
 print(permute('toot'))
 print(permute2('toot'))
 

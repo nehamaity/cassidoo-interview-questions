@@ -3,35 +3,28 @@ Given a list of integers, write a function that finds the longest subsequence wh
 Return the length of this subsequence.
 '''
 def longest_subsequence(list):
-    arr = []
-    prev_val = list[0]
+    if list == None:
+        return 0
 
-    # Create array of differences between consecutive elements, 1 if difference was -1 or 1, 0 otherwise
+    prev_val = list[0]
+    subsequence = 0
+    max_subsequence = 0
+
+    # Sum subsequent elements if absolute difference is 1, keep track of max subsequence
     for val in list:
         if abs(val - prev_val) == 1: 
-            arr.append(1)
+            subsequence += 1
+            if subsequence > max_subsequence:
+                max_subsequence = subsequence
         else:
-            arr.append(0)
+            subsequence = 0
 
         prev_val = val
 
-
-    # Get the maximum consecutive sum to find the longest subsequence with an absolute difference of 1 between elements
-    max_subs = 0
-    subs = 0
-
-    for a in arr[1:]:
-        if a == 1:
-            subs += a
-            if subs > max_subs:
-                max_subs = subs
-        else:
-            subs = 0
-
-    # Add one to account for intial element of subsequence
-    max_subs += 1
-  
-    return max_subs
+    # Add one to account for initial element of subsequence
+    max_subsequence += 1
+    
+    return max_subsequence 
 
 
 print(longest_subsequence([1,2,3,4,5]))

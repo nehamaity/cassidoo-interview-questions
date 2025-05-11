@@ -24,7 +24,7 @@ def longest_common_prefix(words):
     return longest_substr
 
 print(longest_common_prefix(["flower","flow","flight"]))
-# "fl"
+# "flow"
 
 print(longest_common_prefix(["dog","racecar","car"]))
 # ""
